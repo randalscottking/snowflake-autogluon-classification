@@ -1,5 +1,5 @@
-# Snowflake ML Workflow Configuration
-# =====================================
+# Snowflake ML Workflow Configuration with Experiment Tracking
+# =============================================================
 # Customize these settings for your specific use case
 
 # Snowflake Connection
@@ -36,6 +36,47 @@ features:
     feature_view_name: "customer_churn_features"
     refresh_frequency: "1 day"
     version: "1.0"
+
+# Experiment Tracking (NEW!)
+experiments:
+  # Enable Snowflake Experiments tracking
+  enabled: true
+  
+  # Experiment name - groups related runs together
+  experiment_name: "customer_churn_experiments"
+  
+  # Auto-generate unique run names with timestamp
+  auto_generate_run_name: true
+  run_name_prefix: "run"  # e.g., "run_20241218_143022"
+  
+  # What to log to experiments
+  log_parameters: true
+  log_metrics: true
+  log_models: true
+  
+  # Parameters to track
+  tracked_parameters:
+    - "source_table"
+    - "target_column"
+    - "correlation_threshold"
+    - "test_size"
+    - "random_state"
+    - "time_limit"
+    - "presets"
+    - "num_bag_folds"
+    - "num_stack_levels"
+    - "eval_metric"
+    - "total_features"
+    - "selected_features"
+    - "dropped_features"
+  
+  # Metrics to track
+  tracked_metrics:
+    - "f1_score"
+    - "recall"
+    - "precision"
+    - "accuracy"
+    - "models_trained"
 
 # Model Training
 training:
@@ -178,3 +219,4 @@ notifications:
     - "workflow_error"
     - "model_registered"
     - "deployment_complete"
+    - "experiment_logged"  # NEW!
