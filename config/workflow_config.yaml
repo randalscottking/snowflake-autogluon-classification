@@ -1,0 +1,180 @@
+# Snowflake ML Workflow Configuration
+# =====================================
+# Customize these settings for your specific use case
+
+# Snowflake Connection
+snowflake:
+  account: "your_account.region"
+  user: "your_username"
+  role: "ML_ENGINEER"
+  warehouse: "ML_WAREHOUSE"
+  database: "ML_DATA"
+  schema: "PUBLIC"
+
+# Data Configuration
+data:
+  source_table: "ML_DATA.PUBLIC.CUSTOMER_FEATURES"
+  target_column: "CHURN_FLAG"
+  entity_column: "CUSTOMER_ID"
+  
+  # Optional: Columns to exclude from feature selection
+  exclude_columns:
+    - "CUSTOMER_ID"
+    - "CREATED_DATE"
+    - "UPDATED_DATE"
+    - "ROW_ID"
+
+# Feature Engineering
+features:
+  # Correlation threshold for dropping highly correlated features
+  correlation_threshold: 0.95
+  
+  # Feature Store configuration
+  feature_store:
+    database: "ML_FEATURES"
+    schema: "FEATURE_STORE"
+    feature_view_name: "customer_churn_features"
+    refresh_frequency: "1 day"
+    version: "1.0"
+
+# Model Training
+training:
+  # Train/test split
+  test_size: 0.2
+  random_state: 42
+  stratify: true
+  
+  # AutoGluon configuration
+  autogluon:
+    time_limit: 3600  # seconds (1 hour)
+    presets: "best_quality"  # Options: best_quality, high_quality, medium_quality
+    num_bag_folds: 5
+    num_stack_levels: 1
+    problem_type: "binary"  # Options: binary, multiclass, regression
+    eval_metric: "f1"  # Primary metric for optimization
+    
+    # Model types to include (optional)
+    # Leave empty to train all available models
+    hyperparameters:
+      GBM: {}  # LightGBM, CatBoost, XGBoost
+      CAT: {}
+      XGB: {}
+      RF: {}   # Random Forest
+      XT: {}   # Extra Trees
+      NN_TORCH: {}  # Neural Network
+
+# Model Selection Criteria
+model_selection:
+  # Priority order for selecting best model
+  primary_metric: "f1_score"
+  secondary_metric: "recall"
+  tertiary_metric: "precision"
+  
+  # Minimum thresholds (optional)
+  min_f1_score: 0.70
+  min_recall: 0.65
+  min_precision: 0.65
+
+# Model Registry
+model_registry:
+  database: "ML_MODELS"
+  schema: "MODEL_REGISTRY"
+  model_name: "customer_churn_classifier"
+  version: "v1"
+  
+  # Model metadata tags
+  tags:
+    project: "Customer Retention"
+    team: "Data Science"
+    use_case: "Churn Prediction"
+    environment: "production"
+
+# Container Services Deployment
+container_services:
+  enabled: false  # Set to true to deploy to Container Services
+  compute_pool: "ML_COMPUTE_POOL"
+  service_name: "churn_prediction_service"
+  
+  # Service configuration
+  min_instances: 1
+  max_instances: 3
+  
+  # Endpoint configuration
+  endpoint:
+    port: 8080
+    protocol: "http"
+    path: "/predict"
+
+# Monitoring and Logging
+monitoring:
+  # Enable detailed logging
+  verbose: true
+  
+  # Save intermediate results
+  save_feature_report: true
+  save_model_comparison: true
+  save_predictions: true
+  
+  # Output paths
+  output_dir: "./ml_workflow_outputs"
+  
+  # Performance tracking
+  track_metrics:
+    - "f1_score"
+    - "recall"
+    - "precision"
+    - "accuracy"
+    - "roc_auc"
+    - "training_time"
+    - "inference_time"
+
+# Advanced Options
+advanced:
+  # Feature selection
+  feature_selection:
+    methods:
+      - "correlation"  # Pearson correlation
+      # Additional methods can be added:
+      # - "mutual_information"
+      # - "recursive_feature_elimination"
+      # - "lasso"
+    
+  # Handle class imbalance
+  class_imbalance:
+    enabled: false
+    method: "auto"  # Options: auto, smote, undersample, class_weights
+    
+  # Early stopping
+  early_stopping:
+    enabled: true
+    patience: 50
+    
+  # Hyperparameter optimization
+  hyperparameter_tuning:
+    enabled: true
+    search_strategy: "random"  # Options: random, bayesian
+    num_trials: 100
+
+# Notification Settings
+notifications:
+  enabled: false
+  
+  # Slack webhook for notifications
+  slack:
+    webhook_url: ""
+    channel: "#ml-notifications"
+    
+  # Email notifications
+  email:
+    enabled: false
+    recipients:
+      - "data-science@company.com"
+    smtp_server: "smtp.company.com"
+    
+  # Notify on events
+  events:
+    - "workflow_start"
+    - "workflow_complete"
+    - "workflow_error"
+    - "model_registered"
+    - "deployment_complete"
