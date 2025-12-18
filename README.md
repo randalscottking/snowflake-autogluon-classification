@@ -7,7 +7,7 @@
 
 End-to-end automated machine learning pipeline for Snowflake with intelligent feature selection, AutoGluon AutoML training, and production deployment to Snowflake Feature Store, Model Registry, and Container Services.
 
-## 🎯 Overview
+## Overview
 
 This production-ready template provides a complete MLOps workflow for classification tasks in Snowflake:
 
@@ -18,31 +18,31 @@ This production-ready template provides a complete MLOps workflow for classifica
 - **Dual Model Registry**: Registers models to both Snowflake Warehouse and Container Services
 - **Production Deployment**: One-click deployment to Snowflake Container Services with REST API
 
-## 📋 Features
+## Features
 
 ### Core Capabilities
 
-✅ **Smart Feature Selection**
+**Smart Feature Selection**
 - Automatic removal of highly correlated features (configurable threshold)
 - Preserves predictive power while reducing dimensionality
 - Detailed correlation reports
 
-✅ **AutoML Training**
+**AutoML Training**
 - Trains multiple model types: LightGBM, XGBoost, CatBoost, Random Forest, Neural Networks
 - Automatic hyperparameter optimization
 - Ensemble methods (bagging and stacking)
 
-✅ **Model Evaluation**
+**Model Evaluation**
 - Comprehensive metrics: F1 Score, Recall, Precision, Accuracy, ROC-AUC
 - Multi-model comparison
 - Automated best model selection
 
-✅ **MLOps Integration**
+**MLOps Integration**
 - Snowflake Feature Store for feature versioning
 - Model Registry for model lineage and versioning
 - Container Services for scalable inference
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -97,7 +97,7 @@ print(f"Best Model: {results['model_info']['best_model']}")
 print(f"F1 Score: {results['performance_metrics']['f1_score']:.4f}")
 ```
 
-## 📖 Documentation
+## Documentation
 
 Comprehensive documentation is available in the [`docs/`](docs/) directory:
 
@@ -106,7 +106,7 @@ Comprehensive documentation is available in the [`docs/`](docs/) directory:
 - [API Reference](docs/API.md) - Detailed API documentation
 - [Examples](examples/) - Usage examples and tutorials
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 snowflake-autogluon-classification/
@@ -127,7 +127,7 @@ snowflake-autogluon-classification/
 └── README.md                         # This file
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 Customize the workflow using `config/workflow_config.yaml`:
 
@@ -151,7 +151,7 @@ training:
 
 See [Configuration Reference](docs/CONFIGURATION.md) for all options.
 
-## 📊 Workflow Steps
+## Workflow Steps
 
 1. **Data Loading** - Load data from Snowflake table
 2. **Feature Selection** - Calculate correlations and remove redundant features
@@ -161,7 +161,7 @@ See [Configuration Reference](docs/CONFIGURATION.md) for all options.
 6. **Model Registry** - Register model with metadata
 7. **Deployment** - (Optional) Deploy to Container Services
 
-## 🎯 Model Selection
+## Model Selection
 
 Models are automatically selected based on:
 
@@ -169,7 +169,7 @@ Models are automatically selected based on:
 2. **Recall** (Secondary) - Minimize false negatives
 3. **Precision** (Tertiary) - Minimize false positives
 
-## 📈 Example Output
+## Example Output
 
 ```json
 {
@@ -191,7 +191,7 @@ Models are automatically selected based on:
 }
 ```
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run unit tests
@@ -201,38 +201,38 @@ pytest tests/
 pytest --cov=src tests/
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👤 Author
+## Author
 
 **Randal Scott King**
 - Website: [randalscottking.com](https://www.randalscottking.com)
 - GitHub: [@randalscottking](https://github.com/randalscottking)
 - Location: Atlanta, GA
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Snowflake](https://www.snowflake.com/) for ML platform capabilities
 - [AutoGluon](https://auto.gluon.ai/) for AutoML framework
 - Snowflake ML community for inspiration and feedback
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [Snowflake Feature Store Documentation](https://docs.snowflake.com/en/developer-guide/snowpark-ml/feature-store/overview)
 - [Snowflake Model Registry](https://docs.snowflake.com/en/developer-guide/snowpark-ml/model-registry/overview)
 - [AutoGluon Documentation](https://auto.gluon.ai/stable/index.html)
 - [Snowflake Container Services](https://docs.snowflake.com/en/developer-guide/snowpark-container-services/overview)
 
-## 🐛 Issues & Support
+## Issues & Support
 
 For bugs, questions, or feature requests, please [open an issue](https://github.com/randalscottking/snowflake-autogluon-classification/issues).
 
 ---
 
-⭐ If you find this project useful, please consider giving it a star!
+If you find this project useful, please consider giving it a star!
