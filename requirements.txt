@@ -1,0 +1,23 @@
+# Snowflake dependencies
+snowflake-snowpark-python>=1.11.0
+snowflake-ml-python>=1.3.0
+
+# Machine Learning
+autogluon.tabular>=0.8.0
+scikit-learn>=1.3.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Configuration
+PyYAML>=6.0
+
+# Utilities
+python-dotenv>=1.0.0
+
+# Development dependencies (optional)
+# Uncomment for development
+# pytest>=7.4.0
+# pytest-cov>=4.1.0
+# black>=23.0.0
+# flake8>=6.0.0
+# mypy>=1.5.0
