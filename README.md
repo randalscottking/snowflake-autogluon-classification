@@ -5,7 +5,9 @@
 [![Snowflake](https://img.shields.io/badge/Snowflake-Ready-29B5E8)](https://www.snowflake.com/)
 [![AutoGluon](https://img.shields.io/badge/AutoGluon-0.8+-orange)](https://auto.gluon.ai/)
 
-End-to-end automated machine learning pipeline for Snowflake with intelligent feature selection, AutoGluon AutoML training, and production deployment to Snowflake Feature Store, Model Registry, and Container Services.
+End-to-end automated machine learning pipeline for Snowflake with intelligent feature selection, AutoGluon model training, and production deployment to Snowflake Feature Store, Model Registry, and Container Services.
+
+Snowflake doesn't have a built-in AutoML process like Databricks, but I've found that Google's AutoGluon library works just as well and provides slightly better results. 
 
 ## Overview
 
